@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Fonts */
 @font-face {
     font-family: font1;
     src: url(../public/fonts/Lausanne-300.woff2);
@@ -10,29 +11,32 @@
     src: url(../public/fonts/Lausanne-500.woff2);
 }
 
-
+/* Marquee animation */
 .moveX {
-    animation-name: moveAnimation;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation: moveAnimation 10s linear infinite;
+    will-change: transform;
 }
 
+/* Hover overlay */
 .moveLink {
     opacity: 0;
-    transition: all ease 0.3s;
+    transition: opacity 0.3s ease;
 }
 
-.link:hover .moveLink {
-    opacity: 1;
+/* Enable hover only on devices that support it */
+@media (hover: hover) {
+    .link:hover .moveLink {
+        opacity: 1;
+    }
 }
 
+/* Animation keyframes */
 @keyframes moveAnimation {
     from {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 
     to {
-        transform: translateX(-100%);
+        transform: translate3d(-100%, 0, 0);
     }
 }
